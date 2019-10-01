@@ -23,5 +23,7 @@ public interface UserService  extends UserDetailsService {
     boolean checkLogin(User user);
 
     boolean isRegister(User user);
+
+    User getUserByAuth();
 }
 

@@ -109,5 +109,12 @@ public class UserServiceImpl implements UserService {
                 user.getPassword(), enable, accountNonExpired, credentialsNonExpired,
                 accountNonLocked, null);
     }
+
+    @Override
+    public User getUserByAuth() {
+        Object userPrinciple = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long user_id = ((UserPrinciple) userPrinciple).getId();
+        return findById(user_id).get();
+    }
 }
 

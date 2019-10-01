@@ -6,7 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -41,6 +40,9 @@ public class User implements Serializable {
 
     @Column(name = "enabled", columnDefinition = "TINYINT(1)")
     private boolean enabled;
+
+    @OneToMany( targetEntity = House.class)
+    private Set<House> homes ;
 
     @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
