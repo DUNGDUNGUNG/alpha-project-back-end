@@ -69,8 +69,7 @@ public class UserServiceImpl implements UserService {
         boolean isCorrectUser = false;
         for (User currentUser : users) {
             if (currentUser.getEmail().equals(user.getEmail())
-                    && user.getPassword().equals(currentUser.getPassword()) &&
-                    currentUser.isEnabled()) {
+                    && user.getPassword().equals(currentUser.getPassword())) {
                 isCorrectUser = true;
                 break;
             }
