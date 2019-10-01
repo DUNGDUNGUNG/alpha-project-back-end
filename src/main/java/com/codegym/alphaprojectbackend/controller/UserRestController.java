@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController
 public class UserRestController {
 
-    private static final String DEFAULT_ROLE = "ROLE_USER";
+    private static final String DEFAULT_ROLE = "USER";
 
     @Autowired
     AuthenticationManager authenticationManager;
