@@ -35,6 +35,8 @@ public class User implements Serializable {
     @Column(name = "password")
     private String password;
 
+    private String avatarUrl;
+
     @Column(name = "phoneNumber")
     private String phoneNumber;
 
@@ -66,5 +68,17 @@ public class User implements Serializable {
     }
 
     public User() {
+    }
+
+    public User(String lastName, String firstName, String email, String password, String avatarUrl, String phoneNumber, boolean enabled, Set<House> homes, Set<Role> roles) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email = email;
+        this.password = password;
+        this.avatarUrl = avatarUrl;
+        this.phoneNumber = phoneNumber;
+        this.enabled = enabled;
+        this.homes = homes;
+        this.roles = roles;
     }
 }

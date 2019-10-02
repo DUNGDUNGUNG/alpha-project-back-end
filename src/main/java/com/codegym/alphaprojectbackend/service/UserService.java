@@ -12,7 +12,7 @@ public interface UserService  extends UserDetailsService {
 
     Iterable<User> findAll();
 
-    User findByEmail(String email);
+    Optional<User> findByEmail(String email);
 
     User getCurrentUser();
 

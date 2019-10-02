@@ -21,15 +21,18 @@ public class UserPrinciple implements UserDetails {
 
     private String password;
 
+    private String avatarUrl;
+
     private Collection<? extends GrantedAuthority> roles;
 
     public UserPrinciple(Long id,
                          String username, String password,
-                         Collection<? extends GrantedAuthority> roles) {
+                         Collection<? extends GrantedAuthority> roles, String avatarUrl) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.roles = roles;
+        this.avatarUrl = avatarUrl;
     }
 
     public static UserPrinciple build(User user) {
@@ -41,7 +44,8 @@ public class UserPrinciple implements UserDetails {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                authorities,
+                user.getAvatarUrl()
         );
     }
 

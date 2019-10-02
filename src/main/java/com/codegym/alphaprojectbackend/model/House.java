@@ -17,12 +17,6 @@ public class House {
     @Column(name = "houseName")
     private String houseName;
 
-    @Column(name = "kindHouse")
-    private String kindHouse;
-
-    @Column(name = "kindRoom")
-    private String kindRoom;
-
     @Column(name = "addressHouse")
     private String addressHouse;
 
@@ -42,21 +36,28 @@ public class House {
     @JoinColumn(name = "user_id")
     private User owner;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     private Boolean isRented;
+
+    @Enumerated(EnumType.STRING)
+    private HouseStatus status;
 
     public House() {
     }
 
-    public House(String houseName, String kindHouse, String kindRoom, String addressHouse, Integer bedRoom, Integer bathRoom, String descriptionHouse, Integer pricePerNight, User owner, Boolean isRented) {
+    public House(String houseName, String addressHouse, Integer bedRoom, Integer bathRoom, String descriptionHouse, Integer pricePerNight, User owner, Category category, Boolean isRented, HouseStatus status) {
         this.houseName = houseName;
-        this.kindHouse = kindHouse;
-        this.kindRoom = kindRoom;
         this.addressHouse = addressHouse;
         this.bedRoom = bedRoom;
         this.bathRoom = bathRoom;
         this.descriptionHouse = descriptionHouse;
         this.pricePerNight = pricePerNight;
         this.owner = owner;
+        this.category = category;
         this.isRented = isRented;
+        this.status = status;
     }
 }
