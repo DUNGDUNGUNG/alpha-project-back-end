@@ -7,7 +7,7 @@ import com.querydsl.core.types.Predicate;
 import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
-public interface HouseService {
+public interface HouseService extends Service<House> {
 
     void save(House home);
 

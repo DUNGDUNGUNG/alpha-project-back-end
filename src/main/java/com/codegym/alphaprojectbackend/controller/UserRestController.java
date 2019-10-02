@@ -1,8 +1,6 @@
 package com.codegym.alphaprojectbackend.controller;
 
-import com.codegym.alphaprojectbackend.model.Jwt;
-import com.codegym.alphaprojectbackend.model.Role;
-import com.codegym.alphaprojectbackend.model.User;
+import com.codegym.alphaprojectbackend.model.*;
 import com.codegym.alphaprojectbackend.service.JwtService;
 import com.codegym.alphaprojectbackend.service.RoleService;
 import com.codegym.alphaprojectbackend.service.UserService;
@@ -41,6 +39,9 @@ public class UserRestController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    JwtProvider jwtProvider;
+
     @GetMapping("/users")
     public ResponseEntity<Iterable<User>> showAllUser() {
         Iterable<User> users = userService.findAll();
@@ -74,7 +75,8 @@ public class UserRestController {
         String jwt = jwtService.generateTokenLogin(authentication);
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-        return ResponseEntity.ok(new Jwt(jwt, userDetails.getUsername(), userDetails.getAuthorities()));
+        JwtResponse jwtResponse = new JwtResponse(jwt, userDetails.getUsername(), userDetails.getAuthorities(),((UserPrinciple) userDetails).getAvatarUrl());
+        return ResponseEntity.ok(jwtResponse);
     }
 
 }
