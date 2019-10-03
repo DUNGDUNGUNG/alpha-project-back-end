@@ -28,4 +28,5 @@ public interface HouseService extends Service<House> {
     Iterable<House> findAllByOwner(User user);
 
     Iterable<House> findAllByPricePerNightBetween(Integer minPrice, Integer maxPrice);
+
 }

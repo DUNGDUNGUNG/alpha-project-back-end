@@ -3,6 +3,9 @@ package com.codegym.alphaprojectbackend.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "house")
@@ -45,19 +48,33 @@ public class House {
     @Enumerated(EnumType.STRING)
     private HouseStatus status;
 
+    @OneToMany(targetEntity = Image.class,cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    private List<Image> images;
+
     public House() {
     }
 
-    public House(String houseName, String addressHouse, Integer bedRoom, Integer bathRoom, String descriptionHouse, Integer pricePerNight, User owner, Category category, Boolean isRented, HouseStatus status) {
-        this.houseName = houseName;
-        this.addressHouse = addressHouse;
-        this.bedRoom = bedRoom;
-        this.bathRoom = bathRoom;
-        this.descriptionHouse = descriptionHouse;
+    public House(@NotBlank @Size(min = 2, max = 50) String name, @NotBlank @Size(min = 2) String address, Integer bedRooms, Integer bathRooms, @NotBlank @Size(min = 2) String description, Integer pricePerNight, List<Image> images, Boolean isRented, HouseStatus status, Category category, User owner) {
+        this.houseName = name;
+        this.addressHouse = address;
+        this.bedRoom = bedRooms;
+        this.bathRoom = bathRooms;
+        this.descriptionHouse = description;
         this.pricePerNight = pricePerNight;
-        this.owner = owner;
-        this.category = category;
+        this.images = images;
         this.isRented = isRented;
         this.status = status;
+        this.category = category;
+        this.owner = owner;
+    }
+
+    public House(@NotBlank @Size(min = 2, max = 50) String name, @NotBlank @Size(min = 2) String address, Integer bedRooms, Integer bathRooms, @NotBlank @Size(min = 2, max = 50) String description, Integer pricePerNight) {
+        this.houseName = name;
+        this.addressHouse = address;
+        this.bedRoom = bedRooms;
+        this.bathRoom = bathRooms;
+        this.descriptionHouse = description;
+        this.pricePerNight = pricePerNight;
+        this.status = HouseStatus.AVAILABLE;
     }
 }

@@ -1,5 +1,6 @@
 package com.codegym.alphaprojectbackend.service.impl;
 
+import com.codegym.alphaprojectbackend.model.House;
 import com.codegym.alphaprojectbackend.model.User;
 import com.codegym.alphaprojectbackend.model.UserPrinciple;
 import com.codegym.alphaprojectbackend.repository.UserRepository;
@@ -115,6 +116,36 @@ public class UserServiceImpl implements UserService {
         Object userPrinciple = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long user_id = ((UserPrinciple) userPrinciple).getId();
         return findById(user_id).get();
+    }
+
+    @Override
+    public User findByPhoneNumber(String phoneNumber) {
+        return userRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public Boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Boolean existsByPhoneNumber(String phoneNumber) {
+        return userRepository.existsByPhoneNumber(phoneNumber);
+    }
+
+    @Override
+    public User findByEmailIgnoreCase(String email) {
+        return userRepository.findByEmailIgnoreCase(email);
+    }
+
+    @Override
+    public List<User> findUsersByHouses(House houses) {
+        return userRepository.findUsersByHouses(houses);
+    }
+
+    @Override
+    public Long count() {
+        return userRepository.count();
     }
 }
 

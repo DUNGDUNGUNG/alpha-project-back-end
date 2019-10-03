@@ -1,9 +1,11 @@
 package com.codegym.alphaprojectbackend.service;
 
+import com.codegym.alphaprojectbackend.model.House;
 import com.codegym.alphaprojectbackend.model.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserService  extends UserDetailsService {
@@ -25,5 +27,17 @@ public interface UserService  extends UserDetailsService {
     boolean isRegister(User user);
 
     User getUserByAuth();
+
+    User findByPhoneNumber(String phoneNumber);
+
+    Boolean existsByEmail(String email);
+
+    Boolean existsByPhoneNumber(String phoneNumber);
+
+    User findByEmailIgnoreCase(String email);
+
+    List<User> findUsersByHouses(House houses);
+
+    Long count();
 }
 

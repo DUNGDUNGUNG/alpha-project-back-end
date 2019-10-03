@@ -4,6 +4,7 @@ import com.codegym.alphaprojectbackend.model.House;
 import com.codegym.alphaprojectbackend.model.User;
 import com.codegym.alphaprojectbackend.repository.HouseRepository;
 import com.codegym.alphaprojectbackend.service.HouseService;
+import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
