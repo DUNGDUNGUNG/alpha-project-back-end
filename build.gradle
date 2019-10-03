@@ -36,4 +36,5 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.10.RELEASE'
     compile("com.querydsl:querydsl-core:${queryDslVersion}")
     compile("com.querydsl:querydsl-jpa:${queryDslVersion}")
+    compile group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: '2.1.8.RELEASE', ext: 'pom'
 }

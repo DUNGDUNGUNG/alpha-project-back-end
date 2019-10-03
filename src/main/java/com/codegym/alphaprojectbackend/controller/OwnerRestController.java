@@ -45,7 +45,7 @@ public class OwnerRestController {
     private HouseService houseService;
 
     @PostMapping(value = "/house", consumes = "multipart/form-data")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> createHouse(@ModelAttribute House house, HttpServletRequest request) {
         User user = userService.getUserByAuth();
         house.setOwner(user);
@@ -56,7 +56,7 @@ public class OwnerRestController {
     }
 
     @GetMapping("list-house")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<House>> listHouse() {
         List<House> houses = (List<House>) houseService.findAll();
         if (houses.isEmpty()) {
@@ -66,7 +66,7 @@ public class OwnerRestController {
     }
 
     @GetMapping("/houses-list-user")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<House>> listHouseByUser() {
         User user = userService.getUserByAuth();
         List<House> houses = (List<House>) houseService.findAllByOwner(user);
@@ -77,7 +77,7 @@ public class OwnerRestController {
     }
 
     @GetMapping("/{id}/house")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<House> getHouse(@PathVariable("id") Long id) {
         try {
             House house = houseService.findById(id);
@@ -88,7 +88,7 @@ public class OwnerRestController {
     }
 
     @DeleteMapping("/{id}/house")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteHouse(@PathVariable("id") Long id) {
         try {
             House house = houseService.findById(id);
@@ -103,7 +103,7 @@ public class OwnerRestController {
     }
 
     @PutMapping(value = "/{id}/house",consumes = "multipart/form-data")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> editHouse(@PathVariable("id") Long id, @ModelAttribute House house) {
         try {
             User user = userService.getUserByAuth();
@@ -120,7 +120,7 @@ public class OwnerRestController {
     }
 
     @GetMapping("list-category")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<List<Category>> listCategory() {
         List<Category> categories = (List<Category>) categoryService.findAll();
         if (categories.isEmpty()) {
@@ -130,7 +130,7 @@ public class OwnerRestController {
     }
 
     @GetMapping("/{id}/category")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Category> getCategory(@PathVariable("id") Long id) {
         try {
             Category category = categoryService.findById(id);
@@ -141,7 +141,7 @@ public class OwnerRestController {
     }
 
     @PostMapping(value = "/category")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> createCategory(@ModelAttribute Category category, HttpServletRequest request) {
         User user = userService.getUserByAuth();
         categoryService.save(category);
@@ -149,7 +149,7 @@ public class OwnerRestController {
     }
 
     @PutMapping(value = "/{id}/category")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> editCategory(@PathVariable("id") Long id, @ModelAttribute Category category) {
         try {
             User user = userService.getUserByAuth();
@@ -162,7 +162,7 @@ public class OwnerRestController {
     }
 
     @DeleteMapping("/{id}/category")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<?> deleteCategory(@PathVariable("id") Long id) {
         try {
             Category category = categoryService.findById(id);
